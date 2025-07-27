@@ -1,0 +1,50 @@
+ 
+ <%- include("./parts/header.ejs")%>
+<%- include("./parts/nav.ejs")%> 
+ <div class=" my-2 search d-flex justify-content-between align-items-center w-100 ">
+    <select class="text-center selectt form-select focus-ring" style="width: 45%;" aria-label="Default select example">
+
+  <option hidden>search by category</option>
+  <option value="clothes">clothes</option>
+  <option value="mobiles">mobiles</option>
+  <option value="cars">cars</option>
+</select>
+<form style="width:45%;"  class=" text-center formm d-flex align-items-center justify-content-around">
+   
+  
+    
+    <input type="text" class=" form-control text-center" style="width: 60%;" id="exampleInputEmail1" placeholder="enter search key-word" aria-describedby="emailHelp">
+  
+
+
+  <button type="submit"  style="width: 25%;" class="btn btn-primary text-center">Search</button>
+
+</form>
+</div>
+<hr>
+
+ <div class="home-body row" style="min-height: 57.7vh;">
+
+    <div class="card my-2 container text-center col col-12 col-md-6 col-lg-3" style="width: 18rem;">
+  <img src="/images/OIP (6).jpeg" class="card-img-top" alt="...">
+  <div class="card-body" style="">
+    <hr>
+    <h5 class="man-cap"><%= product.name %></h5>
+    <p class="card-text">very nice men cap</p>
+    <p class="card-text">MEN</p>
+    <form action="" method="post">
+      <input type="number" class="text-center" placeholder="enter the amount..." name="" id="">
+        <a href="#" class="btn btn-primary my-2">Order</a>
+    </form>
+  
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+<%- include("./parts/footer.ejs")%>

@@ -1,0 +1,20 @@
+<%- include("./parts/header.ejs")%>
+<%- include("./parts/nav.ejs")%>
+
+    <form style="min-height: 64.6vh;" class="w-100 d-flex align-items-center flex-column  mt-5" enctype="multipart/form-data" action="/admin/add-item" method="post">
+
+  
+    
+    <input type="text" name="name" class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter item name ......." aria-describedby="emailHelp">
+    <input type="text" name="description"  class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter item description ......." aria-describedby="emailHelp">
+    <input type="text" name="category"  class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter item category ......." aria-describedby="emailHelp">
+    <input type="number" name="price"  class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter item price ......." aria-describedby="emailHelp">
+    <input type="file" name="image"  class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter item image ......." aria-describedby="emailHelp">
+  
+
+
+  <button type="submit" class="btn btn-primary my-2">Add-item</button>
+ 
+</form>
+
+<%- include("./parts/footer.ejs")%>
