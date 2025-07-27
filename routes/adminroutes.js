@@ -9,7 +9,7 @@ router.post(
   multer({
     storage: multer.diskStorage({
       destination: (req, file, cb) => {
-        cb(null, "assets/images");
+        cb(null, "images");
       },
       filename: (req, file, cb) => {
         cb(null, Date.now() + "-" + file.originalname);
@@ -27,13 +27,13 @@ router.post(
         image: req.file.filename,
       })
       .then((product) => {
-        console.log(req.file);
-        res
-          .render("/", {
-            product: product,
-          })
-          .catch((err) => console.log(err));
-      });
+        // console.log(req.file);
+        req.flash("product", product);
+        console.log(product);
+        res.redirect("/");
+      })
+      .catch((err) => console.log(err));
   }
 );
+
 module.exports = router;

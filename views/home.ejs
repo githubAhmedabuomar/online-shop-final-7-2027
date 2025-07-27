@@ -24,13 +24,13 @@
 <hr>
 
  <div class="home-body row" style="min-height: 57.7vh;">
-
-    <div class="card my-2 container text-center col col-12 col-md-6 col-lg-3" style="width: 18rem;">
-  <img src="/images/OIP (6).jpeg" class="card-img-top" alt="...">
+  <% for(let p of products){%>
+        <div class="card my-2 container text-center col col-12 col-md-6 col-lg-3" style="width: 18rem;">
+  <img src="/<%=p.image%>" class="card-img-top" alt="...">
   <div class="card-body" style="">
     <hr>
-    <h5 class="man-cap"><%= product.name %></h5>
-    <p class="card-text">very nice men cap</p>
+    <h5 class="man-cap"><%= p.name%></h5>
+    <p class="card-text"><%= p.description%></p>
     <p class="card-text">MEN</p>
     <form action="" method="post">
       <input type="number" class="text-center" placeholder="enter the amount..." name="" id="">
@@ -39,6 +39,9 @@
   
   </div>
 </div>
+  <% }%>
+
+
 
 
 
