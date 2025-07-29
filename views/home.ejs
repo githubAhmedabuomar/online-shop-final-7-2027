@@ -1,19 +1,25 @@
  
  <%- include("./parts/header.ejs")%>
 <%- include("./parts/nav.ejs")%> 
+
  <div class=" my-2 search d-flex justify-content-between align-items-center w-100 ">
-    <select class="text-center selectt form-select focus-ring" style="width: 45%;" aria-label="Default select example">
+  <form action="/home" method="get" style="width: 50%;" class=" d-flex align-items-center justify-content-between ">   
+<select name="category" style="width: 70%;" class="text-center selectt form-select focus-ring"  aria-label="Default select example">
 
   <option hidden>search by category</option>
   <option value="clothes">clothes</option>
   <option value="mobiles">mobiles</option>
   <option value="cars">cars</option>
 </select>
-<form style="width:45%;"  class=" text-center formm d-flex align-items-center justify-content-around">
+
+<button  style="width: 20%;" type="submit" class="btn btn-primary d-block">category</button>
+</form>
+
+<form style="width:45%;" method="get" action="/home" class=" text-center formm d-flex align-items-center justify-content-around">
    
   
     
-    <input type="text" class=" form-control text-center" style="width: 60%;" id="exampleInputEmail1" placeholder="enter search key-word" aria-describedby="emailHelp">
+    <input type="text" name="keyword" class=" form-control text-center" style="width: 60%;" id="exampleInputEmail1" placeholder="search by name or description" aria-describedby="emailHelp">
   
 
 

@@ -32,11 +32,45 @@ exports.getallproducts = () => {
       .then(() => {
         return item_model.find();
       })
-      .then((items) => {
-        res(items);
+      .then((products) => {
+        res(products);
       })
       .catch((err) => {
         rej(err);
       });
+  });
+};
+exports.getfilteredproducts = (category) => {
+  return new Promise((res, rej) => {
+    mongoose
+      .connect(db_url)
+      .then(() => {
+        return item_model.find({ category: category });
+      })
+      .then((products) => {
+        res(products);
+      })
+      .catch((err) => {
+        rej(err);
+      });
+  });
+};
+exports.getbekeyword = (keyword) => {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(db_url).then(() => {
+      item_model
+        .find()
+        .then((products) => {
+          return products.filter(
+            (p) => p.name.includes(keyword) || p.description.includes(keyword)
+          );
+        })
+        .then((p) => {
+          resolve(p);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
   });
 };

@@ -3,8 +3,8 @@ const ejs = require("ejs");
 const app = express();
 const path = require("path");
 const flash = require("connect-flash");
+const homerouter = require("./routes/homeroute");
 var session = require("express-session");
-const adminmodule = require("./modules/admin-modules");
 
 const authroutes = require("./routes/authroutes");
 const adminroutes = require("./routes/adminroutes");
@@ -32,25 +32,7 @@ app.set("views");
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "images")));
 
-// app.use(
-//   session({
-//     cookie: { maxAge: 60000 },
-//     secret: "woot",
-//     // resave: false,
-//     store: store,
-//     saveUninitialized: false,
-//   })
-// );
-app.get("/", (req, res, next) => {
-  adminmodule
-    .getallproducts()
-    .then((items) => {
-      res.render("home.ejs", { products: items });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+app.use("/home", homerouter);
 app.use("/auth", authroutes);
 app.use("/admin", adminroutes);
 app.listen(3000, () => {

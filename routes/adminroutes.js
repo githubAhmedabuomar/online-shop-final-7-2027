@@ -30,7 +30,7 @@ router.post(
         // console.log(req.file);
         req.flash("product", product);
         console.log(product);
-        res.redirect("/");
+        res.redirect("/home");
       })
       .catch((err) => console.log(err));
   }
