@@ -38,9 +38,13 @@
     <h5 class="man-cap"><%= p.name%></h5>
     <p class="card-text"><%= p.description%></p>
     <p class="card-text">MEN</p>
-    <form action="" method="post">
-      <input type="number" class="text-center" placeholder="enter the amount..." name="" id="">
-        <a href="#" class="btn btn-primary my-2">Order</a>
+    <form action="/user/addtocart" method="post">
+      <input type="number" class="text-center" placeholder="enter the amount..." name="number" id="">
+      <input type="hidden" class="text-center" value="<%= p.name %>" name="name" id="">
+      <input type="hidden" class="text-center" value="<%= p.price %>" name="price" id="">
+      <input type="hidden" class="text-center" value="<%= p._id %>" name="id" id="">
+      <input type="submit" class="text-center"  id="">
+     
     </form>
   
   </div>

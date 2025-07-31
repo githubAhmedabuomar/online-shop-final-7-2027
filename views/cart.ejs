@@ -1,0 +1,50 @@
+<%- include("./parts/header")%>
+<%- include("./parts/nav")%>
+<div class="cartBody" style="min-height: 68vh;">
+ <div class="manage">
+    <button class="btn btn-primary">orderAll</button>
+    <button class="btn btn-danger">deleteAll</button>
+</div>  
+<div class="products cart shadow">
+
+    <table class="table">
+        <% if(products.length>0){%>
+        <thead class="cart shadow">
+            <tr>
+                <td class="text-center">index</td>
+                <td class="text-center">name</td>
+                <td class="text-center">price</td>
+                <td class="text-center">totalprice</td>
+                <td class="text-center">number</td>
+                <td class="text-center">actions</td>
+            </tr>
+        </thead>
+        <%}%>
+        <tbody>
+            <% for(let i=0 ;i< products.length ;i++){%>
+             <tr >
+                <td class="text-center" ><%= i+1%></td>
+                <td class="text-center"> <%= products[i].name%></td>
+                <td class="text-center"><%= products[i].price%></td>
+                <td class="text-center"><%= products[i].price * products[i]. number%></td>
+                <form action="" method="post" style="">
+                <td class="text-center"><input style="max-width: 50px;" class="text-center" type="number" name="number" value="<%= products[i].number%>" id=""></td>
+                <td class="text-center bg-dark mmanage">
+                     <input type="hidden" value="<%= products[i]._id %>" name="id" id="">
+               
+                    <button class="btn btn-primary">order</button>
+                    <button formaction="/user/updatecarteitem" class="btn btn-warning">update</button>
+                    <button formaction="/user/deletecartitem"   class="btn btn-danger">delete</button>
+                 </form>
+              
+                </td>
+            </tr>
+                <%}%>
+        
+        </tbody>
+    </table>
+</div>
+    
+
+</div>
+<%- include("./parts/footer")%>

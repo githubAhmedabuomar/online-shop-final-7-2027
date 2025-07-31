@@ -3,6 +3,7 @@ const ejs = require("ejs");
 const app = express();
 const path = require("path");
 const flash = require("connect-flash");
+const userrouter = require("./routes/userroute");
 const homerouter = require("./routes/homeroute");
 var session = require("express-session");
 
@@ -21,7 +22,7 @@ app.use(
   session({
     secret: "hjhfjd dkfdkfjdkjf ",
     saveUninitialized: false,
-    // cookie: { maxAge: "2*50*500" },
+    resave: false,
     store: store,
   })
 );
@@ -31,8 +32,9 @@ app.set("view engine", ejs);
 app.set("views");
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "images")));
-
+app.use("/", homerouter);
 app.use("/home", homerouter);
+app.use("/user", userrouter);
 app.use("/auth", authroutes);
 app.use("/admin", adminroutes);
 app.listen(3000, () => {
