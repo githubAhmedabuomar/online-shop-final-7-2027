@@ -63,4 +63,32 @@ router.post(
       .catch((err) => console.log(err));
   }
 );
+router.post(
+  "/deletecart",
+  bodyParser.urlencoded({ extended: true }),
+  (req, res, next) => {
+    usermodel
+      .deletecart(req.session.userid)
+      .then(() => {
+        res.redirect("/user/cart");
+      })
+      .catch((err) => console.log(err));
+  }
+);
+router.get("/orders", (req, res, next) => {
+  res.render("orders.ejs", { orders: req.flash("orders") });
+});
+router.post(
+  "/ordercart",
+  bodyParser.urlencoded({ extended: true }),
+  (req, res, next) => {
+    usermodel
+      .order(req.body.id)
+      .then((orders) => {
+        req.flash("orders", orders);
+        res.render("orders.ejs", { orders: orders });
+      })
+      .catch((err) => console.log(err));
+  }
+);
 module.exports = router;

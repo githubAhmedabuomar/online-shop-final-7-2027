@@ -6,6 +6,10 @@ const cartSchema = mongoose.Schema({
   price: Number,
   number: Number,
   userid: String,
+  ordered: {
+    type: Boolean,
+    default: false,
+  },
   status: {
     type: String,
     default: "processing",
@@ -88,4 +92,24 @@ exports.updatecarteitem = (id, data) => {
       })
       .catch((err) => reject(err));
   });
+};
+exports.deletecart = async (id) => {
+  try {
+    await mongoose.connect(db_url);
+    await cartmodel.deleteMany({ userid: id });
+    return "cart deleted";
+  } catch (error) {
+    console.log(error);
+  }
+};
+exports.order = async (id) => {
+  try {
+    await mongoose.connect(db_url);
+    await cartmodel.findByIdAndUpdate(id, { ordered: true });
+    let orders = await cartmodel.find({ ordered: true });
+    // await cartmodel.deleteMany({ ordered: true });
+    return orders;
+  } catch (error) {
+    console.log(error);
+  }
 };

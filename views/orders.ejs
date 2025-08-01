@@ -1,0 +1,19 @@
+<%- include("./parts/header")%>
+<%- include("./parts/nav")%>
+<div class="cartBody text-center" style="min-height: 68vh;">
+    <h2 class="my-2">your orders</h2>
+    <div class="orders cart shadow container d-flex justify-content-around align-items-center">
+       <%   if(orders){%>
+     
+            <% for(order of orders){%>
+                <div class="card p-2">
+                     <h5><%= order.name%></h5>
+                     <h5><%= order.number%></h5>
+                     <h6><%= order.price * order.number%></h6>
+                </div>
+               
+                <%}}%>
+    </div>
+    <div class="confirmation"></div>
+</div>
+<%- include("./parts/footer")%>

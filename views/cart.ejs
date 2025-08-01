@@ -1,9 +1,12 @@
 <%- include("./parts/header")%>
 <%- include("./parts/nav")%>
 <div class="cartBody" style="min-height: 68vh;">
- <div class="manage">
-    <button class="btn btn-primary">orderAll</button>
-    <button class="btn btn-danger">deleteAll</button>
+ <div >
+    <form action="" class="manage" method="post">
+     <button class="btn btn-primary">orderAll</button>
+    <button class="btn btn-danger" formaction="/user/deletecart">deleteAll</button>
+    </form>
+
 </div>  
 <div class="products cart shadow">
 
@@ -32,7 +35,7 @@
                 <td class="text-center bg-dark mmanage">
                      <input type="hidden" value="<%= products[i]._id %>" name="id" id="">
                
-                    <button class="btn btn-primary">order</button>
+                    <button class="btn btn-primary" formaction="/user/ordercart">order</button>
                     <button formaction="/user/updatecarteitem" class="btn btn-warning">update</button>
                     <button formaction="/user/deletecartitem"   class="btn btn-danger">delete</button>
                  </form>
