@@ -1,13 +1,16 @@
 <%- include("./parts/header")%>
 <%- include("./parts/nav")%>
 <div class="cartBody" style="min-height: 68vh;">
- <div >
+       <% if(products.length>0){%>
+    <div >
     <form action="" class="manage" method="post">
-     <button class="btn btn-primary">orderAll</button>
+     <button class="btn btn-primary" formaction="/user/orderallcarts">orderAll</button>
     <button class="btn btn-danger" formaction="/user/deletecart">deleteAll</button>
     </form>
 
-</div>  
+</div> 
+<%}%>
+
 <div class="products cart shadow">
 
     <table class="table">

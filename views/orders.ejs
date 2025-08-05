@@ -3,6 +3,7 @@
 <div class="cartBody text-center" style="min-height: 68vh;">
     <h2 class="my-2">your orders</h2>
     <div class="orders cart shadow container d-flex justify-content-around align-items-center">
+      <% console.log(orders) %>
        <%   if(orders){%>
      
             <% for(order of orders){%>
@@ -14,6 +15,20 @@
                
                 <%}}%>
     </div>
-    <div class="confirmation"></div>
+    <div class="confirmation">
+     <form class="w-100 d-flex align-items-center flex-column  mt-5 " method="post" action="/admin/confirmorder">
+
+
+    
+     
+  
+     <input type="text" required name="address" class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter ur address ......." aria-describedby="emailHelp">
+    <input type="text" required name="phone" class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter ur phone......." aria-describedby="emailHelp">
+    <input type="text" required name="name" class="w-75 form-control my-2 text-center " id="exampleInputEmail1" placeholder="enter ur name......." aria-describedby="emailHelp">
+    
+  <button type="submit"  class="btn btn-primary my-2" >confirm order</button>
+
+</form>
+    </div>
 </div>
 <%- include("./parts/footer")%>

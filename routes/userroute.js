@@ -91,4 +91,17 @@ router.post(
       .catch((err) => console.log(err));
   }
 );
+router.post(
+  "/orderallcarts",
+  bodyParser.urlencoded({ extended: true }),
+  (req, res, next) => {
+    usermodel
+      .orderallcarts(req.session.userid)
+      .then((orders) => {
+        res.render("orders.ejs", { orders: orders });
+      })
+      .catch((err) => console.log(err));
+  }
+);
+
 module.exports = router;

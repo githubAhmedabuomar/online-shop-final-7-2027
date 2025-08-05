@@ -8,6 +8,15 @@ const item_schema = mongoose.Schema({
   image: String,
 });
 const item_model = mongoose.model("product", item_schema);
+const adminorderschema = mongoose.Schema({
+  username: String,
+  useraddress: String,
+  userorder: Array,
+  userphone: String,
+  status: String,
+});
+const adminmodel = mongoose.model("adminorder", adminorderschema);
+const usermodel = require("./usermodel");
 exports.add_item_module = (data) => {
   return new Promise((res, rej) => {
     mongoose.connect(db_url).then(() => {
@@ -73,4 +82,31 @@ exports.getbekeyword = (keyword) => {
         });
     });
   });
+};
+exports.confirmorder = async (id, name, address, phone, status) => {
+  try {
+    await mongoose.connect(db_url);
+    let carts = await usermodel.cartmodel.find({ userid: id, ordered: true });
+    let adminorder = await new adminmodel({
+      username: name,
+      useraddress: address,
+      userorder: carts,
+      userphone: phone,
+      status: status,
+    });
+    await adminorder.save();
+
+    return adminorder;
+  } catch (error) {
+    console.log(error);
+  }
+};
+exports.getadminorders = async () => {
+  try {
+    await mongoose.connect(db_url);
+    let orders = await adminmodel.find();
+    return orders;
+  } catch (error) {
+    console.log(error);
+  }
 };

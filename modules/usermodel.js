@@ -1,5 +1,5 @@
-const { name } = require("ejs");
 const mongoose = require("mongoose");
+
 const db_url = "mongodb://localhost:27017/online-shop";
 const cartSchema = mongoose.Schema({
   name: String,
@@ -20,7 +20,7 @@ const cartSchema = mongoose.Schema({
   },
 });
 const cartmodel = mongoose.model("cart", cartSchema);
-
+exports.cartmodel = cartmodel;
 exports.addtocart = (id, uname, price, number, userid) => {
   return new Promise((resolve, reject) => {
     mongoose
@@ -109,6 +109,25 @@ exports.order = async (id) => {
     let orders = await cartmodel.find({ ordered: true });
     // await cartmodel.deleteMany({ ordered: true });
     return orders;
+  } catch (error) {
+    console.log(error);
+  }
+};
+exports.orderallcarts = async (id) => {
+  try {
+    await mongoose.connect(db_url);
+    const carts = await cartmodel.find({ userid: id });
+    // const newcart = carts.map((c) => {
+    //   c = { ...cartSchema, ordered: true };
+    //   return c;
+    // });
+
+    const updating = await cartmodel.updateMany(
+      { userid: id },
+      { ordered: true }
+    );
+    await updating.save();
+    return carts;
   } catch (error) {
     console.log(error);
   }
