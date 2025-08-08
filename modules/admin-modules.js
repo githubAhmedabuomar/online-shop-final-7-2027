@@ -110,3 +110,22 @@ exports.getadminorders = async () => {
     console.log(error);
   }
 };
+exports.updateStatus = async (id, status) => {
+  try {
+    await mongoose.connect(db_url);
+    let order = await adminmodel.findByIdAndUpdate(id, { status: status });
+    console.log(order, "orderrr");
+    console.log(id, status, "hhh");
+    return order;
+  } catch (error) {
+    console.log(error);
+  }
+};
+exports.deleteOrder = async (id) => {
+  try {
+    await mongoose.connect(db_url);
+    await adminmodel.findByIdAndDelete(id);
+  } catch (error) {
+    console.log(error);
+  }
+};

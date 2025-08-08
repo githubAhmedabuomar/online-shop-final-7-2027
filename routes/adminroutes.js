@@ -57,12 +57,33 @@ router.post(
         req.body.phone,
         "pending"
       )
-      .then((order) => {
-        res.redirect("/");
-        console.log(order);
+      .then((orders) => {
+        res.redirect("/user/cart");
+      })
+      .catch((err) => console.log(err));
+  }
+);
+router.post(
+  "/changeStatus",
+  bodyparser.urlencoded({ extended: true }),
+  (req, res, next) => {
+    admin_module
+      .updateStatus(req.body.id, req.body.status)
+      .then(() => {
+        console.log(req.body.id, req.body.status, "bbbb");
       })
       .catch((err) => console.log(err));
   }
 );
 
+router.post(
+  "/deleteorder",
+  bodyparser.urlencoded({ extended: true }),
+  (req, res, next) => {
+    admin_module
+      .deleteOrder(req.body.id)
+      .then(() => res.redirect("/admin/manageOrders"))
+      .catch((err) => console.log(err));
+  }
+);
 module.exports = router;

@@ -1,6 +1,76 @@
 <%- include("./parts/header.ejs") %>
 <%- include("./parts/nav.ejs") %>
-<div class="cartBody" style="min-height: 68vh;">
-    <%= orders%>
+<div class="cartBody text-center my-2" style="min-height: 68vh;">
+<%if(orders.length>0){%>
+    <h2>Admin orders</h2>
+ 
+      <% for (let   i = 0 ; i < orders.length ; i++){%>
+   <table class="orders table w-75 m-auto shadow">
+    <thead>
+        <tr>
+            <td>index</td>
+            <td>name</td>
+            <td>address</td>
+            <td>phone</td>
+          
+            <td>status</td>
+        </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            <td><%=i+1%></td>
+            <td><%=orders[i].username%></td>
+            <td><%=orders[i]. useraddress%></td>
+            <td><%=orders[i]. userphone%></td>
+    
+          
+            <td>
+        
+                <form  action="" method="post">
+                    <input type="hidden" name="id" value="<%=orders[i]._id%>">
+                <select id="statuss"  name="status" defaultValue="">
+                     
+                    <option value="<%= orders[i].status%>" hidden><%= orders[i].status%></option>
+                    <option value="not-processed">notprocessed</option>
+                    <option value="processed">processed</option>
+                    <option value="sent">sent</option>
+                    <option value="cancelled">cancelled</option>
+                </select>
+                <input type="submit" class="btn btn-primary" formaction="/admin/changeStatus" value="submit">
+                <input type="submit" class="btn btn-danger" formaction="/admin/deleteorder"  value="delete">
+                </form>
+           
+            </td>
+        
+        </tr>
+        <tr>
+                <td>orders=></td>
+                <% let uo2=orders[i].userorder%>
+           
+                <% for(let v=0 ; v < uo2.length ; v++){%>
+                    <td>
+                          <p><%= uo2[v].name%> <%= uo2[v].number%> <%= uo2[v].price%></p>
+                    </td>
+                  
+                   
+         
+           
+             <%}%>
+       
+       
+           
+        </tr>
+        
+
+    </tbody>
+   </table>
+   
+        <%}%>
+        <%}else{%>
+            <div class="alert alert-danger">
+                there is no orders
+            </div>
+            <%}%>
 </div>
 <%- include("./parts/footer.ejs") %>

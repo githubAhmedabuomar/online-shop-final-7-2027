@@ -117,16 +117,13 @@ exports.orderallcarts = async (id) => {
   try {
     await mongoose.connect(db_url);
     const carts = await cartmodel.find({ userid: id });
-    // const newcart = carts.map((c) => {
-    //   c = { ...cartSchema, ordered: true };
-    //   return c;
-    // });
 
     const updating = await cartmodel.updateMany(
       { userid: id },
       { ordered: true }
     );
-    await updating.save();
+
+    console.log(carts, "cartsss");
     return carts;
   } catch (error) {
     console.log(error);

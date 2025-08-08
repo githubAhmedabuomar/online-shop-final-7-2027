@@ -85,7 +85,6 @@ router.post(
     usermodel
       .order(req.body.id)
       .then((orders) => {
-        req.flash("orders", orders);
         res.render("orders.ejs", { orders: orders });
       })
       .catch((err) => console.log(err));
